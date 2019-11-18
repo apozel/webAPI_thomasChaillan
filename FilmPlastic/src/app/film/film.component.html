@@ -1,0 +1,17 @@
+<mat-card *ngIf="film" class="film-card">
+  <mat-card-header>
+    <div mat-card-avatar class="film-header-image"></div>
+    <mat-card-title>{{film.Title | uppercase}}</mat-card-title>
+    <mat-card-subtitle>{{film.Director}}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src={{film.Poster}} alt="Movie Poster">
+  <mat-card-content>
+    <p>
+      {{film.Plot}}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button>
+  </mat-card-actions>
+</mat-card>
