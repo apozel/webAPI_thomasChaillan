@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatIconModule, MatCardModule, MatToolbarModule, MatMenuModule, MatInputModule } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +20,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { RechercheComponent } from './recherche/recherche.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FilmdetailleComponent } from './filmdetaille/filmdetaille.component';
+import { MatChipsModule } from '@angular/material/chips';
 
 
 @NgModule({
@@ -28,6 +31,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FilmComponent,
     NavBarComponent,
     RechercheComponent,
+    FilmdetailleComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,7 +51,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatSidenavModule,
     MatListModule,
     MatFormFieldModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatSnackBarModule,
+    MatChipsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

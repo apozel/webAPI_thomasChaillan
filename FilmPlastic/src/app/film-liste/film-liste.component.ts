@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Film } from '../Film';
 
@@ -9,13 +9,8 @@ import { Film } from '../Film';
 })
 export class FilmListeComponent implements OnInit {
 
-  filmListe: Film;
+  @Input() filmListe: Film[] = [];
 
-  constructor(private http: HttpClient) {
-    http
-      .get<Film>('http://www.omdbapi.com/?apikey=2146be8c&t=titanic')
-      .subscribe(data => { this.filmListe = data; });
-  }
   ngOnInit() {
   }
 

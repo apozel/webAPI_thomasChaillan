@@ -1,0 +1,21 @@
+<mat-card *ngIf="filmAfficher" class="filmAfficher-card">
+  <mat-card-header>
+    <div mat-card-avatar class="filmAfficher-header-image"></div>
+    <mat-card-title>{{filmAfficher.Title | uppercase}}</mat-card-title>
+    <mat-card-subtitle>{{filmAfficher.Year}} - {{filmAfficher.Type}}</mat-card-subtitle>
+  </mat-card-header>
+  <img *ngIf="filmAfficher.Poster != 'N/A'" mat-card-image src={{filmAfficher.Poster}} alt="Movie Poster">
+  <img *ngIf="filmAfficher.Poster == 'N/A'" mat-card-image src=..\..\..\assets\NPA.jpg alt="Movie Poster">
+  <mat-card-content>
+    <mat-chip-list>
+      <mat-chip *ngFor="let genre of filmAfficher.Genre">{{genre}}</mat-chip>
+    </mat-chip-list>
+    <p>
+      {{filmAfficher.Plot}}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button>
+  </mat-card-actions>
+</mat-card>

@@ -1,5 +1,5 @@
 <ul>
-  <li>
-    <app-film [film]="filmListe" ></app-film>
+  <li *ngFor="let filmIterator of filmListe">
+    <app-film [film]="filmIterator" ></app-film>
   </li>
 </ul>

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { startWith, map, tap } from 'rxjs/operators';
+import { Observable, Observer } from 'rxjs';
+import { startWith, debounceTime } from 'rxjs/operators';
 import { Film } from '../Film';
+import { HttpClient } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-recherche',
@@ -11,32 +13,44 @@ import { Film } from '../Film';
 })
 export class RechercheComponent implements OnInit {
   myControl = new FormControl();
-  options: Film[] = [];
-
-  filteredOptions: Observable<Film[]>;
+  filmListeResultat: Film[] = [];
 
   ngOnInit() {
-    this.filteredOptions = this.myControl.valueChanges
+    const observeur = this.myControl.valueChanges
       .pipe(
-        startWith(''),
-        tap(value => console.log(value)),
-        map(value => typeof value === 'string' ? value : value.Title),
-        map(Title => Title ? this._filter(Title) : this.options.slice())
-
-      );
+        debounceTime(1000),
+      ).subscribe(value => {
+        console.log('observeur : ' + value);
+      });
 
   }
 
-  montreMoiSaValeur() {
-
+  constructor(private http: HttpClient, private snackBar: MatSnackBar) {
   }
 
-  displayFn(film?: Film): string | undefined {
-    return film ? film.Title : undefined;
+
+  requestHttp(value?: string) {
+    const urlRecherche = 'http://www.omdbapi.com/?apikey=2146be8c&s=' + value;
+    console.log(urlRecherche);
+    this.http
+      .get<any>(urlRecherche)
+      .subscribe(data => {
+        console.log('data rep : ' + data.Response);
+        console.log(data);
+        if (data.Response === 'True') {
+          const resultat: Film[] = data.Search;
+          this.filmListeResultat = resultat;
+        } else {
+          console.log('pas bon resultat');
+          const snackBarRef = this.snackBar.open('Pas de resultat !');
+        }
+
+      });
+  }
+  Submit() {
+    console.log('submit');
+    this.requestHttp(this.myControl.value);
   }
 
-  private _filter(Title: string): Film[] {
-    const filterValue = Title.toLowerCase();
-    return this.options.filter(option => option.Title.toLowerCase().indexOf(filterValue) === 0);
-  }
+
 }

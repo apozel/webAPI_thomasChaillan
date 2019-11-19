@@ -1,13 +1,15 @@
+<a [routerLink]="['/',film.imdbID]">
 <mat-card *ngIf="film" class="film-card">
   <mat-card-header>
     <div mat-card-avatar class="film-header-image"></div>
     <mat-card-title>{{film.Title | uppercase}}</mat-card-title>
-    <mat-card-subtitle>{{film.Director}}</mat-card-subtitle>
+    <mat-card-subtitle>{{film.Year}}</mat-card-subtitle>
   </mat-card-header>
-  <img mat-card-image src={{film.Poster}} alt="Movie Poster">
+  <img *ngIf="film.Poster != 'N/A'" mat-card-image src={{film.Poster}} alt="Movie Poster">
+  <img *ngIf="film.Poster == 'N/A'" mat-card-image src=..\..\..\assets\NPA.jpg alt="Movie Poster">
   <mat-card-content>
     <p>
-      {{film.Plot}}
+      {{film.Type}}
     </p>
   </mat-card-content>
   <mat-card-actions>
@@ -15,3 +17,4 @@
     <button mat-button>SHARE</button>
   </mat-card-actions>
 </mat-card>
+</a>
