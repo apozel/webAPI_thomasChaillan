@@ -1,9 +1,18 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
-@Injectable({
-  providedIn: 'root'
-})
+const api_key = '2146be8c';
+
+@Injectable({ providedIn: 'root' })
 export class HttpService {
 
-  constructor() { }
+  constructor(private http: HttpClient) {
+  }
+
+
+  getData(input) {
+
+    return this.http.get(`http://www.omdbapi.com/?apikey=${api_key}&s=${input}`);
+
+  }
 }

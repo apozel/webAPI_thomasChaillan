@@ -1,7 +1,6 @@
-<form class="film-form" (ngSubmit)="Submit()">
-  <mat-form-field class="film-full-width">
-    <input type="text" placeholder="Titre" aria-label="Titre" matInput [formControl]="myControl">
-  </mat-form-field>
-  <button mat-raised-button type="submit" >Recherche</button>
-</form>
-<app-film-liste *ngIf="filmListeResultat" [filmListe]="filmListeResultat"></app-film-liste>
+<mat-form-field class="film-full-width">
+    <input type="text" placeholder="Titre" matInput aria-label="Titre" (change)=demandeRecherche($event) >
+</mat-form-field>
+
+<app-film-liste *ngIf="resultatFilm" [filmListe]="resultatFilm"></app-film-liste>
+

@@ -1,6 +1,9 @@
 .film-card {
-  max-width: 400px;
+	max-width: 400px;
 }
-.image-header-card{
-background-size: cover;
+a: link {
+	text-decoration: none;
+}
+.image-header-card {
+	background-size: cover;
 }
